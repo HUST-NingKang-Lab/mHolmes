@@ -34,7 +34,7 @@ conda activate mHolmes
 # 3. Install dependencies
 pip install -r requirements.txt
 
-```bash
+```
 
 ## 📂 Data Preparation
 
