@@ -39,7 +39,6 @@ pip install -r requirements.txt
 mHolmes requires input data in a specific CSV format. The file should contain sample identifiers, temporal metadata, and the relative abundances of 12 feature categories (11 specific bacterial classes + 1 aggregated "others" category).
 
 ### 1. Input Data Format (`input.csv`)
-
 Please structure your input CSV file as shown below. Rows represent samples, and columns represent the top 11 dominant bacterial classes ranked by mean relative abundance.
 
 | ID | day | Gammaproteobacteria | Bacilli | Bacteroidia | Clostridia | Actinobacteria | ... | Deinococci | others |
@@ -67,4 +66,3 @@ Please structure your input CSV file as shown below. Rows represent samples, and
     * *Negativicutes*
     * *Deinococci*
 * **`others`**: Aggregated relative abundance of all remaining low-prevalence taxa not listed above.
-
