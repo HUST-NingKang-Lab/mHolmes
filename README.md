@@ -34,3 +34,36 @@ conda activate mHolmes
 # 3. Install dependencies
 pip install -r requirements.txt
 
+## 📂 Data Preparation
+
+mHolmes requires input data in a specific CSV format. The file should contain sample identifiers, temporal metadata, and the relative abundances of 12 feature categories (11 specific bacterial classes + 1 aggregated "others" category).
+
+### 1. Input Data Format (`input.csv`)
+Please structure your input CSV file as shown below. Rows represent samples, and columns represent the top 11 dominant bacterial classes ranked by mean relative abundance.
+
+| ID | day | Gammaproteobacteria | Bacilli | Bacteroidia | Clostridia | Actinobacteria | ... | Deinococci | others |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| CMU_16_12_face | 21 | 0.033 | 0.151 | 0.040 | 0.102 | 0.633 | ... | 0.007 | 0.007 |
+| CMU_16_12_face | 20 | 0.027 | 0.302 | 0.012 | 0.023 | 0.600 | ... | 0.015 | 0.015 |
+| CMU_16_12_face | 19 | 0.032 | 0.474 | 0.007 | 0.009 | 0.427 | ... | 0.021 | 0.021 |
+
+> **📝 Note:** Ensure all abundance values in a row sum to approximately **1.0 (100%)**.
+
+### 2. Column Descriptions
+
+* **`ID`**: Unique identifier for each sample (e.g., `CMU_16_12_face`).
+* **`day`**: The Postmortem Interval (PMI) or time point associated with the sample (in days). This serves as the target variable for training or validation.
+* **Feature Columns (11 Classes)**: Relative abundance of the top 11 dominant bacterial classes used by the mHolmes model:
+    * *Gammaproteobacteria*
+    * *Bacilli*
+    * *Bacteroidia*
+    * *Clostridia*
+    * *Actinobacteria*
+    * *Alphaproteobacteria*
+    * *Erysipelotrichia*
+    * *Fusobacteriia*
+    * *Thermoleophilia*
+    * *Negativicutes*
+    * *Deinococci*
+* **`others`**: Aggregated relative abundance of all remaining low-prevalence taxa not listed above.
+
