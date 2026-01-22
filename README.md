@@ -34,6 +34,8 @@ conda activate mHolmes
 # 3. Install dependencies
 pip install -r requirements.txt
 
+```bash
+
 ## 📂 Data Preparation
 
 mHolmes requires input data in a specific CSV format. The file should contain sample identifiers, temporal metadata, and the relative abundances of 12 feature categories (11 specific bacterial classes + 1 aggregated "others" category).
