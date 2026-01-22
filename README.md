@@ -18,8 +18,19 @@ mHolmes is built on Python and PyTorch. We recommend running on a Linux environm
 * **Python**: 3.8+
 * **GPU**: NVIDIA GPU (RTX 3090 or higher recommended for training)
 
-### Dependencies
-Install the required packages using pip:
+## 📦 Installation
+
+We recommend using **Conda** to manage the environment, similar to other bioinformatics tools.
 
 ```bash
+# 1. Clone the repository
+git clone [https://github.com/HUST-NingKang-Lab/mHolmes.git](https://github.com/HUST-NingKang-Lab/mHolmes.git)
+cd mHolmes
+
+# 2. Create Conda environment
+conda create -n mHolmes python=3.8
+conda activate mHolmes
+
+# 3. Install dependencies
 pip install -r requirements.txt
+
