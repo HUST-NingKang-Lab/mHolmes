@@ -35,13 +35,28 @@ conda activate mHolmes
 pip install -r requirements.txt
 
 ```
+Or you can download the offline installation package from the GitHub release page and install MicroProphet using the following command:
 
-## 📂 Data Preparation
+```bash
+pip install mHolmes-1.1.0-py3-none-any.whl
 
-mHolmes requires input data in a specific CSV format. The file should contain sample identifiers, temporal metadata, and the relative abundances of 12 feature categories (11 specific bacterial classes + 1 aggregated "others" category).
+```
 
-### 1. Input Data Format (`input.csv`)
-Please structure your input CSV file as shown below. Rows represent samples, and columns represent the top 11 dominant bacterial classes ranked by mean relative abundance.
+##📖Usage
+
+mHolmes is accessed via a command-line interface (CLI) with various modes. The general syntax is:
+
+```bash
+mhm <mode> [options]
+```
+
+
+### 📂 Data Preparation
+
+mHolmes requires input data in a specific CSV format. 
+
+#### 1. Input Data Format (`input.csv`)
+Please structure your input CSV file as shown below. 
 
 | ID | day | Gammaproteobacteria | Bacilli | Bacteroidia | Clostridia | Actinobacteria | ... | Deinococci | others |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -51,11 +66,11 @@ Please structure your input CSV file as shown below. Rows represent samples, and
 
 > **📝 Note:** Ensure all abundance values in a row sum to approximately **1.0 (100%)**.
 
-### 2. Column Descriptions
+#### 2. Column Descriptions
 
 * **`ID`**: Unique identifier for each sample (e.g., `CMU_16_12_face`).
 * **`day`**: The Postmortem Interval (PMI) or time point associated with the sample (in days). This serves as the target variable for training or validation.
-* **Feature Columns (11 Classes)**: Relative abundance of the top 11 dominant bacterial classes used by the mHolmes model:
+* **Feature Columns (11 Classes)**: Relative abundance of the top 11 dominant bacterial classes used by the mHolmes model (values are numerical):
     * *Gammaproteobacteria*
     * *Bacilli*
     * *Bacteroidia*
