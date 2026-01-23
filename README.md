@@ -42,7 +42,7 @@ pip install mHolmes-1.1.0-py3-none-any.whl
 
 ```
 
-##📖Usage
+## 📖Usage
 
 mHolmes is accessed via a command-line interface (CLI) with various modes. The general syntax is:
 
@@ -52,9 +52,6 @@ mhm <mode> [options]
 
 
 ### 📂 Data Preparation
-
-mHolmes requires input data in a specific CSV format. 
-
 #### 1. Input Data Format (`input.csv`)
 Please structure your input CSV file as shown below. 
 
