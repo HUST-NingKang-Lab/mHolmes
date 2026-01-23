@@ -80,3 +80,29 @@ Please structure your input CSV file as shown below.
     * *Negativicutes*
     * *Deinococci*
 * **`others`**: Aggregated relative abundance of all remaining low-prevalence taxa not listed above.
+
+### 🔮 Predict Future Microbial Time-Series Abundance (No Transfer Learning)
+
+This mode allows you to predict microbial abundance using a 5-fold cross-validation strategy. The model automatically partitions the input data into training and testing sets to validate performance without requiring external transfer learning datasets.
+
+#### 1. Command Syntax
+
+Run the prediction using the `predict` mode. You must specify your input CSV and the desired output directory.
+
+```bash
+mhm predict ./data/example.csv --export_path "./result"
+```
+
+#### 2. Workflow & Output
+The tool performs a 5-fold cross-validation. For every fold, `mHolmes` generates specific output files in the export path.
+
+**📂 Output Files Breakdown:**
+
+The execution will generate **10 files in total** (2 types of files × 5 folds).
+
+| File Type | Count | Description | Key Content |
+| :--- | :--- | :--- | :--- |
+| **Microbial Abundance Table** | 5 | Comparison of predicted vs. actual values for each fold. | • **`pred`**: Predicted abundance values<br>• **`label`**: Ground truth (actual) abundance |
+| **Evaluation Metrics Table** | 5 | Statistical performance metrics for the model. | • **Mean MSE** (Mean Squared Error)<br>• **$R^2$** (Coefficient of Determination)<br>• **Pearson Correlation** |
+
+> **📊 Logic:** The input data is split into 5 subsets. The model trains on 4 subsets and tests on the remaining one, repeating this process 5 times until each subset has served as the test set.
