@@ -318,3 +318,10 @@ The core of the forecasting model is a `PatchTST` architecture configured with t
 -   **Learning Rate Scheduler**: Linear decay.
 -   **Epochs**: Up to 1000, with early stopping patience of 3 epochs based on validation loss.
 -   **Batch Size**: 8.
+
+## Maintainer
+
+| Name | Email | Organization |
+| :--- | :--- | :--- |
+| **Han Jin** | `jinhan@hust.edu.cn` | PhD student, School of Life Science and Technology, Huazhong University of Science & Technology |
+| **Kang Ning** | `ningkang@hust.edu.cn` | Professor, School of Life Science and Technology, Huazhong University of Science & Technology |
