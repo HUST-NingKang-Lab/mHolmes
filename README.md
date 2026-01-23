@@ -140,4 +140,44 @@ The output format is identical to the non-transfer learning mode. The execution 
 * **5 Microbial Abundance Tables:** Contains `pred` (prediction) and `label` (ground truth) columns for each fold.
 * **5 Evaluation Metrics Tables:** Contains Mean MSE, $R^2$, and Pearson correlation for each fold.
 
+### 🧠 SHAP Analysis (Feature Importance)
 
+This module calculates SHAP (SHapley Additive exPlanations) values to interpret model predictions. It quantifies the contribution of each microbial feature to the model's output.
+
+#### 1. Analysis Modes
+
+You can perform SHAP analysis in two contexts: standard (non-transfer) and transfer learning.
+
+**Option A: Standard SHAP Analysis (Non-Transfer)**
+Calculates feature importance based on the standard training model.
+
+```bash
+mhm shap ./data/example.csv --export_path "./result"
+```
+
+**Option B: Transfer Learning SHAP Analysis**
+Calculates feature importance specifically for the target domain after fine-tuning.
+
+```bash
+mhm tlshap ./data/source.csv ./data/target.csv --export_path "./result"
+```
+#### 2. Output File Format
+
+Both modes generate a CSV file (`shap_feature_importance.csv`) summarizing the feature importance. Below is an example of the file content:
+
+| Feature | SHAP Importance |
+| :--- | :--- |
+| Gammaproteobacteria | 6.194648e-06 |
+| others | 9.256655e-07 |
+| Clostridia | 5.751579e-07 |
+| Fusobacteriia | 4.939387e-07 |
+| Thermoleophilia | 1.520035e-07 |
+| ... | ... |
+
+**Column Descriptions:**
+
+* **`Feature`**: The name of the microbial feature (e.g., *Gammaproteobacteria*, *Bacilli*).
+* **`SHAP Importance`**: The average SHAP value associated with the feature.
+    * **Magnitude**: Indicates the strength of the feature's influence on the predicted PMI.
+    * **Sign (+/-)**: Indicates the direction of the effect (positive values increase the predicted PMI, negative values decrease it).
+    * *> For transfer learning, these values reflect feature importance within the **target domain**.*
