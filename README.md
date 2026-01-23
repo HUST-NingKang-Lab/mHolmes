@@ -181,3 +181,68 @@ Both modes generate a CSV file (`shap_feature_importance.csv`) summarizing the f
     * **Magnitude**: Indicates the strength of the feature's influence on the predicted PMI.
     * **Sign (+/-)**: Indicates the direction of the effect (positive values increase the predicted PMI, negative values decrease it).
     * *> For transfer learning, these values reflect feature importance within the **target domain**.*
+
+### 📉 MAE Validation (Forecast Quality Assessment)
+
+This module evaluates the quality of the forecasted microbial data by using a proxy task: predicting the Postmortem Interval (PMI or "day") based on the abundance profiles. Lower MAE (Mean Absolute Error) indicates that the forecasted data preserves realistic biological signals.
+
+#### 1. Analysis Modes
+
+**Option A: Standard MAE Validation (Non-Transfer)**
+Evaluates forecasting quality on a single dataset using 5-fold cross-validation.
+
+```bash
+mhm mae ./data/example.csv --export_path "./result"
+```
+
+**Option B: Transfer Learning MAE Validation**
+Evaluates forecasting quality on the target domain (e.g., hip) after pre-training on a source domain (e.g., face).
+
+```bash
+mhm tlmae ./data/source.csv ./data/target.csv --export_path "./result"
+```
+
+#### 2. Methodology
+
+The validation process follows a rigorous 4-step workflow, repeated for each fold in a 5-fold cross-validation setup:
+
+**Step 1: Pre-training (Source Domain)**
+* **Model**: A `PatchTST` Transformer-based model is trained on the source domain.
+* **Task**: Learn to predict the next 4 days of microbial abundance using the previous 7 days as context.
+* **Goal**: Capture general microbiome temporal patterns.
+
+**Step 2: Fine-Tuning (Target Domain)**
+* **Action**: The pre-trained model is fine-tuned on a small subset (60%) of the target domain's training data.
+* **Goal**: Adapt the model to the specific dynamics of the target site while retaining general knowledge.
+
+**Step 3: Evaluation via "Day Prediction" Proxy Task**
+To measure forecast realism, we use a separate `RandomForestRegressor` trained to predict the *day* from abundance data.
+1.  **Train Day Predictor**: A Random Forest is trained on the target domain's training data.
+2.  **Generate Forecasts**: The fine-tuned `PatchTST` predicts future abundances for the validation set.
+3.  **Compare Scenarios**: The Day Predictor estimates the "day" for samples in two scenarios:
+    * **`past-only` (Baseline)**: Uses only actual historical data (Days 1-7).
+    * **`past+generated` (Evaluation)**: Uses historical data + the model's forecasted data (Days 8-11).
+
+**Step 4: Aggregation**
+We calculate the Mean Absolute Error (MAE) between the *predicted day* and the *true day*. Comparing the MAE of the forecasted period in `past+generated` against the baseline reveals the quality of the generated data.
+
+#### 3. Output File Format
+
+The tool generates a CSV file (e.g., `face_allfeat_fold1_metrics.csv`) containing the per-day MAE metrics. Below is a sample:
+
+| day | scenario | mae |
+| :--- | :--- | :--- |
+| 1 | past-only | 9.144 |
+| 2 | past-only | 9.183 |
+| ... | ... | ... |
+| 11 | past-only | 1.746 |
+| 12 | past+generated | 1.392 |
+| 13 | past+generated | 2.221 |
+
+**Column Descriptions:**
+
+* **`day`**: The actual day (PMI) of the sample collection.
+* **`mae`**: The Mean Absolute Error between the predicted day and the actual day. Lower values represent better performance.
+* **`scenario`**: The evaluation context.
+    * **`past-only`**: Baseline accuracy using only real, historical abundance data.
+    * **`past+generated`**: Evaluation accuracy when including the model's forecasted abundance data. A low MAE here suggests the forecast is realistic enough to accurately guide PMI estimation.
