@@ -106,3 +106,38 @@ The execution will generate **10 files in total** (2 types of files × 5 folds).
 | **Evaluation Metrics Table** | 5 | Statistical performance metrics for the model. | • **Mean MSE** (Mean Squared Error)<br>• **$R^2$** (Coefficient of Determination)<br>• **Pearson Correlation** |
 
 > **📊 Logic:** The input data is split into 5 subsets. The model trains on 4 subsets and tests on the remaining one, repeating this process 5 times until each subset has served as the test set.
+
+### 🚀 Predict Future Microbial Time-Series Abundance (With Transfer Learning)
+
+This mode leverages transfer learning to improve prediction accuracy on a specific target dataset. It utilizes a source dataset for pre-training and a subset of the target dataset for fine-tuning.
+
+#### 1. Command Syntax
+
+Run the transfer learning prediction using the `tlpredict` mode. You must provide both the source and target data files.
+
+```bash
+mhm tlpredict ./data/source.csv ./data/target.csv --export_path "./result"
+```
+
+#### 2. Workflow & Methodology
+
+The model employs a **Pre-training + Fine-tuning** strategy integrated with 5-fold cross-validation on the target data.
+
+* **Step 1: Data Inputs**
+    * **Source Data** (`source.csv`): Used entirely for model **pre-training**. Must follow the standard `input.csv` format.
+    * **Target Data** (`target.csv`): Used for **fine-tuning** and **testing**. Must follow the standard `input.csv` format.
+
+* **Step 2: Split Strategy**
+    The target data is divided into 5 folds. For each fold:
+    1.  **Pre-training:** The model is initialized using **all** source data.
+    2.  **Fine-tuning:** From the training portion of the target data, **60% (0.6) of the subjects** are randomly selected to form the fine-tuning dataset.
+    3.  **Testing:** The model is evaluated on the remaining held-out test fold of the target data.
+
+#### 3. Output Files
+
+The output format is identical to the non-transfer learning mode. The execution will generate **10 files in total** in the export path.
+
+* **5 Microbial Abundance Tables:** Contains `pred` (prediction) and `label` (ground truth) columns for each fold.
+* **5 Evaluation Metrics Tables:** Contains Mean MSE, $R^2$, and Pearson correlation for each fold.
+
+
