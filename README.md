@@ -293,3 +293,28 @@ The tool generates a CSV file (e.g., `mHolmes_mask_val_body.csv`) summarizing th
 * **`mse`** (**Mean Squared Error**): The average squared difference between predicted and actual abundance. A lower value indicates better model fit. The value in this file is the *average MSE* across all sliding time windows for that specific fold.
 * **`r2`** (**$R^2$ / Coefficient of Determination**): Indicates the proportion of the variance in the dependent variable (actual abundance) that is predictable from the independent variable (predicted abundance). Values closer to **1.0** indicate higher explanatory power.
 * **`corr`** (**Pearson Correlation Coefficient**): Measures the linear relationship between the flattened arrays of predicted and actual values. Values closer to **1.0** indicate a strong positive linear relationship, meaning the model's predictions trend in the same direction as the actual values.
+
+## Model Configuration
+
+The core of the forecasting model is a `PatchTST` architecture configured with the following key parameters.
+
+### Main Parameters
+
+| Parameter               | Value  | Description                                                                                             |
+| ----------------------- | :----: | ------------------------------------------------------------------------------------------------------- |
+| `prediction_length`     |   3    | The model predicts 3 future time steps.                                                                 |
+| `context_length`        |   5    | The model uses the past 5 time steps as input context. (Derived from `WINDOW_LEN` 8 - `prediction_length` 3) |
+| `patch_length`          |   1    | Each patch consists of a single time step.                                                              |
+| `patch_stride`          |   1    | Patches are extracted with a stride of 1, meaning no time steps are skipped.                            |
+| `d_model`               |   64   | The embedding dimension size within the Transformer.                                                    |
+| `nhead`                 |   4    | The number of attention heads in the multi-head attention mechanism.                                    |
+| `num_hidden_layers`     |   3    | The number of Transformer encoder layers.                                                               |
+| `dropout`               |  0.2   | Dropout rate applied for regularization.                                                                |
+| `do_mask_input`         | `True` | Enables random input masking during training for data augmentation and regularization.                  |
+
+### Training Parameters
+
+-   **Optimizer**: AdamW (default in `transformers.Trainer`).
+-   **Learning Rate Scheduler**: Linear decay.
+-   **Epochs**: Up to 1000, with early stopping patience of 3 epochs based on validation loss.
+-   **Batch Size**: 8.
