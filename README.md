@@ -90,7 +90,7 @@ This mode allows you to predict microbial abundance using a 5-fold cross-validat
 Run the prediction using the `predict` mode. You must specify your input CSV and the desired output directory.
 
 ```bash
-mhm predict ./data/example.csv --export_path "./result"
+mhm predict ./data/example.csv --export_path = "./result"
 ```
 
 #### 2. Workflow & Output
@@ -116,7 +116,7 @@ This mode leverages transfer learning to improve prediction accuracy on a specif
 Run the transfer learning prediction using the `tlpredict` mode. You must provide both the source and target data files.
 
 ```bash
-mhm tlpredict ./data/source.csv ./data/target.csv --export_path "./result"
+mhm tlpredict ./data/source.csv ./data/target.csv --export_path = "./result"
 ```
 
 #### 2. Workflow & Methodology
@@ -152,14 +152,14 @@ You can perform SHAP analysis in two contexts: standard (non-transfer) and trans
 Calculates feature importance based on the standard training model.
 
 ```bash
-mhm shap ./data/example.csv --export_path "./result"
+mhm shap ./data/example.csv --export_path = "./result"
 ```
 
 **Option B: Transfer Learning SHAP Analysis**
 Calculates feature importance specifically for the target domain after fine-tuning.
 
 ```bash
-mhm tlshap ./data/source.csv ./data/target.csv --export_path "./result"
+mhm tlshap ./data/source.csv ./data/target.csv --export_path = "./result"
 ```
 #### 2. Output File Format
 
@@ -192,14 +192,14 @@ This module evaluates the quality of the forecasted microbial data by using a pr
 Evaluates forecasting quality on a single dataset using 5-fold cross-validation.
 
 ```bash
-mhm mae ./data/example.csv --export_path "./result"
+mhm mae ./data/example.csv --export_path = "./result"
 ```
 
 **Option B: Transfer Learning MAE Validation**
 Evaluates forecasting quality on the target domain (e.g., hip) after pre-training on a source domain (e.g., face).
 
 ```bash
-mhm tlmae ./data/source.csv ./data/target.csv --export_path "./result"
+mhm tlmae ./data/source.csv ./data/target.csv --export_path = "./result"
 ```
 
 #### 2. Methodology
