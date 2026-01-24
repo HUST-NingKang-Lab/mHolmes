@@ -107,6 +107,46 @@ The execution will generate **10 files in total** (2 types of files × 5 folds).
 
 > **📊 Logic:** The input data is split into 5 subsets. The model trains on 4 subsets and tests on the remaining one, repeating this process 5 times until each subset has served as the test set.
 
+**📝 Output Examples & Column Definitions:**
+
+Below are examples of the generated files based on actual outputs.
+
+**A. Microbial Abundance Tables**
+*Files: `fold_n_pred.csv` (Prediction) and `fold_n_label.csv` (Ground Truth)*
+
+These files present the microbial abundance profile in a matrix format. Two corresponding files are generated for each fold: one containing the model's predictions (`pred`) and one containing the actual ground truth values (`label`).
+
+| subject_id | time | Actinobacteria | Alphaproteobacteria | Bacilli | ... | others |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| SHSU_2016_64 | 15 | 0.045452 | 0.022228 | 0.543553 | ... | 0.021950 |
+| SHSU_2016_64 | 16 | 0.050529 | 0.024506 | 0.501234 | ... | 0.024189 |
+| SHSU_2016_64 | 17 | 0.055563 | 0.029841 | 0.452508 | ... | 0.029516 |
+| SHSU_2016_64 | 18 | 0.050999 | 0.024593 | 0.495412 | ... | 0.024274 |
+
+**Column Definitions:**
+* **`subject_id`**: The unique identifier for the subject or sample series (e.g., `SHSU_2016_64`).
+* **`time`**: The specific time point or longitudinal sequence indicator for the sample.
+* **Taxa Columns** (e.g., *Actinobacteria*, *Alphaproteobacteria*, *Bacilli*): The abundance values for each specific taxon in the sample. In the `pred` file, these are the model's estimates; in the `label` file, these are the actual biological measurements.
+
+**B. Evaluation Metrics Table**
+*File: `results.csv`*
+
+This table summarizes the statistical performance metrics for each fold of the cross-validation.
+
+| test_num | mse | r2 | corr |
+| :--- | :--- | :--- | :--- |
+| 1 | 0.016687 | 0.350591 | 0.607779 |
+| 2 | 0.014608 | 0.401445 | 0.634046 |
+| 3 | 0.012432 | 0.545991 | 0.746215 |
+| 4 | 0.014164 | 0.414067 | 0.665841 |
+| 5 | 0.022978 | 0.209675 | 0.464288 |
+
+**Column Definitions:**
+* **`test_num`**: The fold number (e.g., 1-5) corresponding to the cross-validation iteration.
+* **`mse`**: **Mean Squared Error**. The average squared difference between the predicted values and the actual values (Lower is better).
+* **`r2`**: **Coefficient of Determination ($R^2$)**. Indicates the proportion of the variance in the dependent variable that is predictable from the independent variable (Closer to 1 is better).
+* **`corr`**: **Pearson Correlation Coefficient**. Measures the linear correlation between the predicted and actual abundance values (Range: -1 to 1; closer to 1 indicates strong positive correlation).
+
 ### 🚀 Predict Future Microbial Time-Series Abundance (With Transfer Learning)
 
 This mode leverages transfer learning to improve prediction accuracy on a specific target dataset. It utilizes a source dataset for pre-training and a subset of the target dataset for fine-tuning.
