@@ -363,5 +363,5 @@ The core of the forecasting model is a `PatchTST` architecture configured with t
 
 | Name | Email | Organization |
 | :--- | :--- | :--- |
-| **Han Jin** | `jinhan@hust.edu.cn` | PhD student, School of Life Science and Technology, Huazhong University of Science & Technology |
+| **Jin Han** | `jinhan@hust.edu.cn` | PhD student, School of Life Science and Technology, Huazhong University of Science & Technology |
 | **Kang Ning** | `ningkang@hust.edu.cn` | Professor, School of Life Science and Technology, Huazhong University of Science & Technology |
