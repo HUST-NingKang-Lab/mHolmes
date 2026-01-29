@@ -296,7 +296,7 @@ This mode evaluates the model's robustness and generalization capabilities by in
 Run the mask evaluation mode by providing source, target, and external validation datasets.
 
 ```bash
-mhm mask ./data/source.csv ./data/target.csv ./data/external_val.csv --export_path="./result.csv"
+mhm mask ./data/source.csv ./data/target.csv ./data/external_val.csv --export_path="./result"
 ```
 
 #### 2. Methodology: Masking Mechanisms
