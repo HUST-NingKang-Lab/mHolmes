@@ -178,7 +178,7 @@ The model employs a **Pre-training + Fine-tuning** strategy integrated with 5-fo
 The output format is identical to the non-transfer learning mode. The execution will generate **10 files in total** in the export path.
 
 * **5 Microbial Abundance Tables:** Contains `pred` (prediction) and `label` (ground truth) columns for each fold.
-* **5 Evaluation Metrics Tables:** Contains Mean MSE, $R^2$, and Pearson correlation for each fold.
+* **1 Evaluation Metrics Tables:** Contains Mean MSE, $R^2$, and Pearson correlation for each fold.
 
 ### 🧠 SHAP Analysis (Feature Importance)
 
