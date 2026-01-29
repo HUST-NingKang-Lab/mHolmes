@@ -103,7 +103,7 @@ The execution will generate **10 files in total** (2 types of files × 5 folds).
 | File Type | Count | Description | Key Content |
 | :--- | :--- | :--- | :--- |
 | **Microbial Abundance Table** | 5 | Comparison of predicted vs. actual values for each fold. | • **`pred`**: Predicted abundance values<br>• **`label`**: Ground truth (actual) abundance |
-| **Evaluation Metrics Table** | 5 | Statistical performance metrics for the model. | • **Mean MSE** (Mean Squared Error)<br>• **$R^2$** (Coefficient of Determination)<br>• **Pearson Correlation** |
+| **Evaluation Metrics Table** | 1 | Statistical performance metrics for the model. | • **Mean MSE** (Mean Squared Error)<br>• **$R^2$** (Coefficient of Determination)<br>• **Pearson Correlation** |
 
 > **📊 Logic:** The input data is split into 5 subsets. The model trains on 4 subsets and tests on the remaining one, repeating this process 5 times until each subset has served as the test set.
 
