@@ -319,7 +319,7 @@ The tool generates a CSV file (e.g., `mHolmes_mask_val_body.csv`) summarizing th
 
 **Example Output:**
 
-| fold | mse | r2 | corr |
+| fold | MSE | R2 | Corr |
 | :--- | :--- | :--- | :--- |
 | 1 | 0.025747 | 0.600024 | 0.799217 |
 | 2 | 0.024797 | 0.614769 | 0.808516 |
