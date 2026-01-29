@@ -270,14 +270,14 @@ We calculate the Mean Absolute Error (MAE) between the *predicted day* and the *
 
 The tool generates a CSV file (e.g., `face_allfeat_fold1_metrics.csv`) containing the per-day MAE metrics. Below is a sample:
 
-| day | scenario | mae |
-| :--- | :--- | :--- |
-| 1 | past-only | 9.144 |
-| 2 | past-only | 9.183 |
-| ... | ... | ... |
-| 11 | past-only | 1.746 |
-| 12 | past+generated | 1.392 |
-| 13 | past+generated | 2.221 |
+| day | scenario | mae | fold |
+| :--- | :--- | :--- | :--- |
+| 1 | past-only | 9.144 | 1 |
+| 2 | past-only | 9.183 | 1 |
+| ... | ... | ... | ... |
+| 11 | past-only | 1.746 | 2 |
+| 12 | past+generated | 1.392 | 2 |
+| 13 | past+generated | 2.221 | 3 |
 
 **Column Descriptions:**
 
