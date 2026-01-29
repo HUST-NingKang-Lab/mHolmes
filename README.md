@@ -133,7 +133,7 @@ These files present the microbial abundance profile in a matrix format. Two corr
 
 This table summarizes the statistical performance metrics for each fold of the cross-validation.
 
-| test_num | mse | r2 | corr |
+| fold_num | MSE | R2 | Corr |
 | :--- | :--- | :--- | :--- |
 | 1 | 0.016687 | 0.350591 | 0.607779 |
 | 2 | 0.014608 | 0.401445 | 0.634046 |
@@ -142,10 +142,10 @@ This table summarizes the statistical performance metrics for each fold of the c
 | 5 | 0.022978 | 0.209675 | 0.464288 |
 
 **Column Definitions:**
-* **`test_num`**: The fold number (e.g., 1-5) corresponding to the cross-validation iteration.
-* **`mse`**: **Mean Squared Error**. The average squared difference between the predicted values and the actual values (Lower is better).
-* **`r2`**: **Coefficient of Determination ($R^2$)**. Indicates the proportion of the variance in the dependent variable that is predictable from the independent variable (Closer to 1 is better).
-* **`corr`**: **Pearson Correlation Coefficient**. Measures the linear correlation between the predicted and actual abundance values (Range: -1 to 1; closer to 1 indicates strong positive correlation).
+* **`fold_num`**: The fold number (e.g., 1-5) corresponding to the cross-validation iteration.
+* **`MSE`**: **Mean Squared Error**. The average squared difference between the predicted values and the actual values (Lower is better).
+* **`R2`**: **Coefficient of Determination ($R^2$)**. Indicates the proportion of the variance in the dependent variable that is predictable from the independent variable (Closer to 1 is better).
+* **`Corr`**: **Pearson Correlation Coefficient**. Measures the linear correlation between the predicted and actual abundance values (Range: -1 to 1; closer to 1 indicates strong positive correlation).
 
 ### 🚀 Predict Future Microbial Time-Series Abundance (With Transfer Learning)
 
