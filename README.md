@@ -20,7 +20,7 @@ mHolmes is built on Python and PyTorch. We recommend running on a Linux environm
 
 ## 📦 Installation
 
-We recommend using **Conda** to manage the environment, similar to other bioinformatics tools.
+We recommend using **Conda** to manage the environment, similar to other bioinformatics tools. Installation takes approximately 10-20 minutes
 
 ```bash
 # 1. Clone the repository
@@ -90,7 +90,7 @@ This mode allows you to predict microbial abundance using a 5-fold cross-validat
 Run the prediction using the `predict` mode. You must specify your input CSV and the desired output directory.
 
 ```bash
-mhm predict ./data/example.csv --export_path="./result"
+mhm predict ./corpse_data/example.csv --export_path="./result"
 ```
 
 #### 2. Workflow & Output
@@ -156,7 +156,7 @@ This mode leverages transfer learning to improve prediction accuracy on a specif
 Run the transfer learning prediction using the `tlpredict` mode. You must provide both the source and target data files.
 
 ```bash
-mhm tlpredict ./data/source.csv ./data/target.csv --export_path="./result"
+mhm tlpredict ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_path="./result"
 ```
 
 #### 2. Workflow & Methodology
@@ -192,14 +192,14 @@ You can perform SHAP analysis in two contexts: standard (non-transfer) and trans
 Calculates feature importance based on the standard training model.
 
 ```bash
-mhm shap ./data/example.csv --export_path="./result"
+mhm shap ./corpse_data/example.csv --export_path="./result"
 ```
 
 **Option B: Transfer Learning SHAP Analysis**
 Calculates feature importance specifically for the target domain after fine-tuning.
 
 ```bash
-mhm tlshap ./data/source.csv ./data/target.csv --export_path="./result"
+mhm tlshap ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_path="./result"
 ```
 #### 2. Output File Format
 
@@ -232,14 +232,14 @@ This module evaluates the quality of the forecasted microbial data by using a pr
 Evaluates forecasting quality on a single dataset using 5-fold cross-validation.
 
 ```bash
-mhm mae ./data/example.csv --export_path="./result"
+mhm mae ./corpse_data/example.csv --export_path="./result"
 ```
 
 **Option B: Transfer Learning MAE Validation**
 Evaluates forecasting quality on the target domain (e.g., hip) after pre-training on a source domain (e.g., face).
 
 ```bash
-mhm tlmae ./data/source.csv ./data/target.csv --export_path="./result"
+mhm tlmae ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_path="./result"
 ```
 
 #### 2. Methodology
@@ -296,7 +296,7 @@ This mode evaluates the model's robustness and generalization capabilities by in
 Run the mask evaluation mode by providing source, target, and external validation datasets.
 
 ```bash
-mhm mask ./data/source.csv ./data/target.csv ./data/external_val.csv --export_path="./result"
+mhm mask ./corpse_data/source_hip_keytaxa.csv ./corpse_data/target_face_keytaxa.csv ./corpse_data/val_head.csv --export_path="./result"
 ```
 
 #### 2. Methodology: Masking Mechanisms
