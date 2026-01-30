@@ -38,7 +38,7 @@ pip install -r requirements.txt
 Or you can download the offline installation package from the GitHub release page and install MicroProphet using the following command:
 
 ```bash
-pip install mHolmes-1.1.0-py3-none-any.whl
+pip install --prefer-binary mHolmes-1.1.0-py3-none-any.whl 
 
 ```
 
