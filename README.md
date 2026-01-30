@@ -89,6 +89,8 @@ This mode allows you to predict microbial abundance using a 5-fold cross-validat
 
 Run the prediction using the `predict` mode. You must specify your input CSV and the desired output directory.
 
+(Demo run time: 5-10 minutes)
+
 ```bash
 mhm predict ./corpse_data/example.csv --export_path="./result"
 ```
@@ -155,6 +157,8 @@ This mode leverages transfer learning to improve prediction accuracy on a specif
 
 Run the transfer learning prediction using the `tlpredict` mode. You must provide both the source and target data files.
 
+(Demo run time: 5-10 minutes)
+
 ```bash
 mhm tlpredict ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_path="./result"
 ```
@@ -191,12 +195,16 @@ You can perform SHAP analysis in two contexts: standard (non-transfer) and trans
 **Option A: Standard SHAP Analysis (Non-Transfer)**
 Calculates feature importance based on the standard training model.
 
+(Demo run time: <5 minutes)
+
 ```bash
 mhm shap ./corpse_data/example.csv --export_path="./result"
 ```
 
 **Option B: Transfer Learning SHAP Analysis**
 Calculates feature importance specifically for the target domain after fine-tuning.
+
+(Demo run time: <5 minutes)
 
 ```bash
 mhm tlshap ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_path="./result"
@@ -231,12 +239,16 @@ This module evaluates the quality of the forecasted microbial data by using a pr
 **Option A: Standard MAE Validation (Non-Transfer)**
 Evaluates forecasting quality on a single dataset using 5-fold cross-validation.
 
+(Demo run time: <5 minutes)
+
 ```bash
 mhm mae ./corpse_data/example.csv --export_path="./result"
 ```
 
 **Option B: Transfer Learning MAE Validation**
 Evaluates forecasting quality on the target domain (e.g., hip) after pre-training on a source domain (e.g., face).
+
+(Demo run time: <5 minutes)
 
 ```bash
 mhm tlmae ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_path="./result"
@@ -294,6 +306,8 @@ This mode evaluates the model's robustness and generalization capabilities by in
 #### 1. Command Syntax
 
 Run the mask evaluation mode by providing source, target, and external validation datasets.
+
+(Demo run time: <5 minutes)
 
 ```bash
 mhm mask ./corpse_data/source_hip_keytaxa.csv ./corpse_data/target_face_keytaxa.csv ./corpse_data/val_head.csv --export_path="./result"
