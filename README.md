@@ -211,7 +211,7 @@ mhm tlshap ./corpse_data/source_hip.csv ./corpse_data/target_face.csv --export_p
 ```
 #### 2. Output File Format
 
-Both modes generate a CSV file (`shap_feature_importance.csv`) summarizing the feature importance. Below is an example of the file content:
+Both modes generate a CSV file (`foundation/transfer_fold_shap.csv`) summarizing the feature importance. Below is an example of the file content:
 
 | Feature | SHAP Importance |
 | :--- | :--- |
@@ -329,7 +329,7 @@ This mode employs two strategic masking techniques to enhance model training and
 
 #### 3. Output File Format
 
-The tool generates a CSV file (e.g., `mHolmes_mask_val_body.csv`) summarizing the performance metrics on the external validation dataset.
+The tool generates a CSV file (e.g., `mask_val_head.csv`) summarizing the performance metrics on the external validation dataset.
 
 **Example Output:**
 
