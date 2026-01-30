@@ -307,7 +307,7 @@ This mode evaluates the model's robustness and generalization capabilities by in
 
 Run the mask evaluation mode by providing source, target, and external validation datasets.
 
-(Demo run time: 5-10 minutes)
+(Demo run time: 5-15 minutes)
 
 ```bash
 mhm mask ./corpse_data/source_hip_keytaxa.csv ./corpse_data/target_face_keytaxa.csv ./corpse_data/val_head.csv --export_path="./result"
