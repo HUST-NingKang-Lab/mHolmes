@@ -28,7 +28,7 @@ git clone [https://github.com/HUST-NingKang-Lab/mHolmes.git](https://github.com/
 cd mHolmes
 
 # 2. Create Conda environment
-conda create -n mHolmes python=3.8
+conda create -n mHolmes python=3.10
 conda activate mHolmes
 
 # 3. Install dependencies
